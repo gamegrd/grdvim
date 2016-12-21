@@ -112,9 +112,9 @@ Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
 " 类似sublimetext的搜索
 " In CtrlSF window:
 " 回车/o, 打开
-" c-t       在tab中打开(建议)
-" c-T - Lkie t but focus CtrlSF window instead of opened new tab.
-" c-q - Quit CtrlSF window.
+" <leader>-t       在tab中打开(建议)
+" <leader>-T - Lkie t but focus CtrlSF window instead of opened new tab.
+" <leader>-q - Quit CtrlSF window.
 Plug 'dyng/ctrlsf.vim'
 " incsearch
 " Plug 'haya14busa/incsearch.vim'
