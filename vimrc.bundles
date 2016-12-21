@@ -23,7 +23,7 @@ filetype off " required! turn off
 if !exists('g:bundle_groups')
     " let g:bundle_groups=['neocomplete','python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta', 'json', 'nginx', 'golang', 'ruby', 'less', 'php', 'coffeescript']
     "let g:bundle_groups=['python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta']
-    let g:bundle_groups=['neocomplete','python', 'tmux', 'php']
+    let g:bundle_groups=['YouCompleteMe','neocomplete','python', 'tmux', 'php']
 endif
 
 " ----------------------------------------------------------------------------
@@ -44,10 +44,10 @@ if count(g:bundle_groups, 'YouCompleteMe')
     " 重启 :YcmRestartServer
     Plug 'Valloric/YouCompleteMe'
 elseif count(g:bundle_groups, 'neocomplete')
-    Bundle 'Shougo/neocomplete.vim.git'
-    Bundle 'Shougo/neosnippet'
-    Bundle 'Shougo/neosnippet-snippets'
-    Bundle 'honza/vim-snippets'
+    Plug 'Shougo/neocomplete.vim.git'
+    Plug 'Shougo/neosnippet'
+    Plug 'Shougo/neosnippet-snippets'
+    Plug 'honza/vim-snippets'
 endif
 
 Plug 'scrooloose/syntastic'
