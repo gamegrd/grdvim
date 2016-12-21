@@ -6,7 +6,7 @@
 
 ```
 
-git clone git@github.com:gamegrd/vimrc.git .vim
+git clone git@github.com:gamegrd/grdvim.git .grdvim
 
 ```
 
