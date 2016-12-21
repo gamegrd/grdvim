@@ -68,7 +68,7 @@ if $FOR_VIM; then
     lnif "$CURRENT_DIR/" "$HOME/.vim"
 fi
 
-    lnif "$CURRENT_DIR/" "$HOME/.tmux.conf"
+    lnif "$CURRENT_DIR/tmux.conf" "$HOME/.tmux.conf"
 
 if $FOR_NEOVIM; then
     lnif "$CURRENT_DIR/" "$HOME/.config/nvim"
