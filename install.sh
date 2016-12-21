@@ -67,6 +67,9 @@ if $FOR_VIM; then
     lnif $CURRENT_DIR/vimrc.bundles $HOME/.vimrc.bundles
     lnif "$CURRENT_DIR/" "$HOME/.vim"
 fi
+
+    lnif "$CURRENT_DIR/" "$HOME/.tmux.conf"
+
 if $FOR_NEOVIM; then
     lnif "$CURRENT_DIR/" "$HOME/.config/nvim"
     lnif $CURRENT_DIR/vimrc $CURRENT_DIR/init.vim
