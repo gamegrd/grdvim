@@ -683,5 +683,19 @@ highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
 
+func Setfc()
+     if expand("%:e") != 'py'
+          call append(line(".")  ,   "/**************************************")
+          call append(line(".")  ,   "*Author  : gamegrd")
+          call append(line(".")  ,   "*Email   : gamegrd@gmail.com")
+          call append(line(".")  ,   "*Data    ：".strftime("%m/%d/%Y"))
+          call append(line(".")  ,   "**************************************/")
+     endif
+endfunc
+
+
+map <Leader>sc :call Setfc() <CR><ESC>5j
+
+
 
 
