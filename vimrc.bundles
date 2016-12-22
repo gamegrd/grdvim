@@ -44,7 +44,7 @@ if count(g:bundle_groups, 'YouCompleteMe')
     " 重启 :YcmRestartServer
     Plug 'Valloric/YouCompleteMe'
 elseif count(g:bundle_groups, 'neocomplete')
-    Plug 'Shougo/neocomplete.vim.git'
+    Plug 'Shougo/neocomplete.vim'
     Plug 'Shougo/neosnippet'
     Plug 'Shougo/neosnippet-snippets'
     Plug 'honza/vim-snippets'
