@@ -46,17 +46,20 @@ if count(g:bundle_groups, 'YouCompleteMe')
     Plug 'Valloric/YouCompleteMe'
 elseif count(g:bundle_groups, 'neocomplete')
     Plug 'Shougo/neocomplete.vim'
-    Plug 'Shougo/neosnippet'
-    Plug 'Shougo/neosnippet-snippets'
-    Plug 'honza/vim-snippets'
 endif
 
 Plug 'scrooloose/syntastic'
 
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'honza/vim-snippets'
+
 " Group dependencies, vim-snippets depends on ultisnips
 " 代码片段快速插入 (snippets中,是代码片段资源,需要学习)
 " Snippets are separated from the engine. Add this if you want them:
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips' 
+Plug 'honza/vim-snippets'
+
 
 
 " 自动补全单引号，双引号等
