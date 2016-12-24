@@ -24,7 +24,8 @@ if !exists('g:bundle_groups')
     " let g:bundle_groups=['neocomplete','python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta', 'json', 'nginx', 'golang', 'ruby', 'less', 'php', 'coffeescript']
     "let g:bundle_groups=['python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta']
     "let g:bundle_groups=['YouCompleteMe','neocomplete','python', 'tmux', 'php']
-    let g:bundle_groups=['neocomplete','python', 'tmux', 'php']
+    " let g:bundle_groups=['YouCompleteMe','python', 'tmux', 'php']
+    let g:bundle_groups=['YouCompleteMe','python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta', 'json', 'nginx',  'less', 'php']
 endif
 
 " ----------------------------------------------------------------------------
@@ -47,6 +48,8 @@ if count(g:bundle_groups, 'YouCompleteMe')
 elseif count(g:bundle_groups, 'neocomplete')
     Plug 'Shougo/neocomplete.vim'
 endif
+
+Plug 'Chiel92/vim-autoformat' 
 
 Plug 'scrooloose/syntastic'
 
@@ -292,6 +295,9 @@ call plug#end()
 
 
 " ################### 基础 ######################
+
+" Chiel92/vim-autoformat
+noremap <leader><leader>f :Autoformat<CR>
 
 " syntastic {{{
     " dependence
