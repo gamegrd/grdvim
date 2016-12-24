@@ -22,10 +22,13 @@ do
 done
 
 cd $CURRENT_DIR/bundle/YouCompleteMe/
-for (i=1;i<1024;i++)
+
+for ((i=1;i<1024;i++))
 do
+    cd $CURRENT_DIR/bundle/YouCompleteMe/
     git submodule update --init --recursive
 done
+
 if [ `which clang` ]   # check system clang
 then
     python install.py --clang-completer --system-libclang   # use system clang
