@@ -698,4 +698,3 @@ map <Leader>sc :call Setfc() <CR><ESC>5j
 
 
 
-
