@@ -683,7 +683,7 @@ highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
 
-func Setfc()
+function! Setfc()
      if expand("%:e") != 'py'
           call append(line(".")  ,   "/**************************************")
           call append(line(".")  ,   "*Author  : gamegrd")
