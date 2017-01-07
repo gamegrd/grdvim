@@ -716,30 +716,29 @@ endif
     noremap <leader>h :GundoToggle<CR>
 " }}}
 
+
+
 " ################### 显示增强 ###################
 
 " airline {{{
     if !exists('g:airline_symbols')
         let g:airline_symbols = {}
     endif
-    let g:airline_left_sep = '▶'
-    let g:airline_left_alt_sep = '❯'
-    let g:airline_right_sep = '◀'
-    let g:airline_right_alt_sep = '❮'
-    let g:airline_symbols.linenr = '¶'
-    let g:airline_symbols.branch = '⎇'
+    " let g:airline_left_sep = '▶'
+    " let g:airline_left_alt_sep = '❯'
+    " let g:airline_right_sep = '◀'
+    " let g:airline_right_alt_sep = '❮'
+    " let g:airline_symbols.linenr = '¶'
+    " let g:airline_symbols.branch = '⎇'
     " 是否打开tabline
-    " let g:airline#extensions#tabline#enabled = 1
+     " let g:airline#extensions#tabline#enabled = 1
 " }}}
-
-
 
 " rainbow_parentheses {{{
     " 不加入这行, 防止黑色括号出现, 很难识别
     " \ ['black',       'SeaGreen3'],
     let g:rbpt_colorpairs = [
         \ ['brown',       'RoyalBlue3'],
-        \ ['Darkblue',    'SeaGreen3'],
         \ ['darkgray',    'DarkOrchid3'],
         \ ['darkgreen',   'firebrick3'],
         \ ['darkcyan',    'RoyalBlue3'],
