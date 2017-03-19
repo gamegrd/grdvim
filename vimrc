@@ -664,7 +664,7 @@ set t_Co=256
 
 "colorscheme solarized
 colorscheme molokai
-"colorscheme desert
+" colorscheme desert
 
 
 " 设置标记一列的背景颜色和数字一行颜色一致
@@ -683,4 +683,22 @@ highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
 
+<<<<<<< HEAD
+=======
+function! Setfc()
+     if expand("%:e") != 'py'
+          call append(line(".")  ,   "/**************************************")
+          call append(line(".")  ,   "*Author  : gamegrd")
+          call append(line(".")  ,   "*Email   : gamegrd@gmail.com")
+          call append(line(".")  ,   "*Data    ：".strftime("%m/%d/%Y"))
+          call append(line(".")  ,   "**************************************/")
+     endif
+endfunc
+
+
+map <Leader>sc :call Setfc() <CR><ESC>5j
+
+highlight LineNr ctermfg=darkyellow
+
+>>>>>>> 2ad28ad... Change line number color
 
