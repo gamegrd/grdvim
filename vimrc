@@ -683,8 +683,6 @@ highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
 
-<<<<<<< HEAD
-=======
 function! Setfc()
      if expand("%:e") != 'py'
           call append(line(".")  ,   "/**************************************")
@@ -700,5 +698,4 @@ map <Leader>sc :call Setfc() <CR><ESC>5j
 
 highlight LineNr ctermfg=darkyellow
 
->>>>>>> 2ad28ad... Change line number color
 
