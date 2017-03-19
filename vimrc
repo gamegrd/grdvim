@@ -664,7 +664,7 @@ set t_Co=256
 
 "colorscheme solarized
 colorscheme molokai
-"colorscheme desert
+" colorscheme desert
 
 
 " 设置标记一列的背景颜色和数字一行颜色一致
@@ -696,5 +696,6 @@ endfunc
 
 map <Leader>sc :call Setfc() <CR><ESC>5j
 
+highlight LineNr ctermfg=darkyellow
 
 
