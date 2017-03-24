@@ -91,7 +91,7 @@ Plug 'Lokaltog/vim-easymotion'
 
 " 更高效的行内移动, f/F/t/T, 才触发
 " quickscope
-" Plug 'unblevable/quick-scope'
+Plug 'unblevable/quick-scope'
 
 Plug 'vim-scripts/matchit.zip'
 " signature
@@ -587,24 +587,27 @@ endif
 " ################### 快速移动 ###################
 
 " easymotion {{{
-    let g:EasyMotion_smartcase = 1
+    let g:EasyMotion_smartcase = 0
     "let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
-    map <Leader><leader>h <Plug>(easymotion-linebackward)
-    map <Leader><Leader>j <Plug>(easymotion-j)
-    map <Leader><Leader>k <Plug>(easymotion-k)
-    map <Leader><leader>l <Plug>(easymotion-lineforward)
+    map <leader><leader>h <Plug>(easymotion-linebackward)
+    map <leader><Leader>j <Plug>(easymotion-j)
+    map <Leader>w <Plug>(easymotion-w)
+    map <Leader>b <Plug>(easymotion-b)
+    map <leader><Leader>k <Plug>(easymotion-k)
+    map <leader><leader>l <Plug>(easymotion-lineforward)
     " 重复上一次操作, 类似repeat插件, 很强大
     " map <Leader><leader>. <Plug>(easymotion-repeat)
 " }}}
 
 
-" quickscope {{{
+    " quickscope {{{
     let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
     " macvim/gvim会有问题, 暂时注解
-    " let g:qs_first_occurrence_highlight_color = '#afff5f' " gui vim
-    " let g:qs_first_occurrence_highlight_color = 155       " terminal vim
-    " let g:qs_second_occurrence_highlight_color = '#5fffff'  " gui vim
-    " let g:qs_second_occurrence_highlight_color = 81         " terminal vim
+    let g:qs_first_occurrence_highlight_color = '#afff5f' " gui vim
+    let g:qs_first_occurrence_highlight_color = 155       " terminal vim
+    let g:qs_second_occurrence_highlight_color = '#5fffff'  " gui vim
+    let g:qs_second_occurrence_highlight_color = 81         " terminal vim
 " }}}
 
 " ################### 快速选中 ###################
