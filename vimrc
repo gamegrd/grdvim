@@ -72,7 +72,7 @@ set shortmess=atI
 " 取消备份。 视情况自己改
 set nobackup
 " 关闭交换文件
-" set noswapfile
+set noswapfile
 
 
 " TODO: remove this, use gundo

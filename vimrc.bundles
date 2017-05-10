@@ -269,6 +269,7 @@ if count(g:bundle_groups, 'html')
     Plug 'docunext/closetag.vim'
     " ###### emmet HTML complete #########
     " Plug "mattn/emmet-vim"
+    " Plug 'posva/vim-vue'
 endif
 
 if count(g:bundle_groups, 'nginx')
