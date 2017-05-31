@@ -14,6 +14,8 @@ git clone https://github.com/gamegrd/grdvim.git .grdvim
 
 ### 2. 安装依赖包
 
+* 在mac下使用系统剪切板需要安装
+* brew install reattach-to-user-namespace
 
 ##### 2.1 系统依赖 # ctags, ag(the_silver_searcher)
 
