@@ -696,6 +696,9 @@ endfunc
 
 map <Leader>sc :call Setfc() <CR><ESC>5j
 
+
+set clipboard=unnamed
+
 highlight LineNr ctermfg=darkyellow
 
 
