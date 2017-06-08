@@ -21,11 +21,11 @@ filetype off " required! turn off
 
 " inspired by spf13, 自定义需要的插件集合
 if !exists('g:bundle_groups')
-    " let g:bundle_groups=['YouCompleteMe','neocomplete','python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta', 'json', 'nginx', 'golang', 'ruby', 'less', 'php', 'coffeescript']
+    " let g:bundle_groups=['YouCompleteMe','neocomplete','python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta', 'json', 'nginx', 'golang', 'ruby', 'less', 'php', 'coffeescript','rust']
     "let g:bundle_groups=['python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta']
     "let g:bundle_groups=['YouCompleteMe','neocomplete','python', 'tmux', 'php']
     " let g:bundle_groups=['YouCompleteMe','python', 'tmux', 'php']
-    let g:bundle_groups=['YouCompleteMe','python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta', 'json', 'nginx',  'less', 'php']
+    let g:bundle_groups=['YouCompleteMe','python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta', 'json', 'php','golang']
 endif
 
 " ----------------------------------------------------------------------------
@@ -182,6 +182,12 @@ if count(g:bundle_groups, 'tmux')
     " For tmux navigator Ctrl-hjkl
     Plug 'christoomey/vim-tmux-navigator'
 endif
+
+if count(g:bundle_groups, 'rust')
+    Plug 'rust-lang/rust.vim'
+    let g:rustfmt_autosave = 1
+endif
+
 
 if count(g:bundle_groups, 'markdown')
     Plug 'plasticboy/vim-markdown', {'for': 'md'}
