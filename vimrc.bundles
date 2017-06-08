@@ -25,7 +25,7 @@ if !exists('g:bundle_groups')
     "let g:bundle_groups=['python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta']
     "let g:bundle_groups=['YouCompleteMe','neocomplete','python', 'tmux', 'php']
     " let g:bundle_groups=['YouCompleteMe','python', 'tmux', 'php']
-    let g:bundle_groups=['YouCompleteMe','python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta', 'json', 'php','golang']
+    let g:bundle_groups=['YouCompleteMe','python', 'javascript', 'markdown', 'html', 'css', 'tmux', 'beta', 'json', 'php']
 endif
 
 " ----------------------------------------------------------------------------
