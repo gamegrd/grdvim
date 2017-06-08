@@ -1,4 +1,6 @@
 --------------------------------
+# 预览
+![image](https://raw.githubusercontent.com/gamegrd/grdvim/master/screenshot/2.jpg?raw=true)
 
 # 安装步骤
 
