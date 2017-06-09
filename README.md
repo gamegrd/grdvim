@@ -8,9 +8,10 @@
 
 ```
 
-git clone git@github.com:gamegrd/grdvim.git .grdvim
-git clone https://github.com/gamegrd/grdvim.git .grdvim
 
+git clone https://github.com/gamegrd/grdvim.git .grdvim
+cd ~/.grdvim
+./install.sh
 ```
 
 
