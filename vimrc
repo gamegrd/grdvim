@@ -681,22 +681,91 @@ highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
-
-function! Setfc()
-     if expand("%:e") != 'py'
-          call append(line(".")  ,   "/**************************************")
-          call append(line(".")  ,   "*Author  : gamegrd")
-          call append(line(".")  ,   "*Email   : gamegrd@gmail.com")
-          call append(line(".")  ,   "*Data    ：".strftime("%m/%d/%Y"))
-          call append(line(".")  ,   "**************************************/")
-     endif
+function SetTitle()
+    if &filetype == 'python'
+        call append(line(".")+0, "")
+        call append(line(".")+1, "")
+        call append(line(".")+2, "\#############################################")
+        call append(line(".")+3, "\# File Name: ".expand("%"))
+        call append(line(".")+4, "\# Author: gamegrd")
+        call append(line(".")+5, "\# Mail: gamegrd@gmail.com")
+        call append(line(".")+6, "\# Created Time: ".strftime(" %Y-%m-%d %H:%M:%S"))
+        call append(line(".")+7, "\# ")
+        call append(line(".")+8, "")
+        call append(line(".")+9, "\###########################################################")
+        call append(line(".")+10, "\#                                                         #")
+        call append(line(".")+11, "\#                         _oo8oo_                         #")
+        call append(line(".")+12, "\#                        o8888888o                        #")
+        call append(line(".")+13, "\#                        88\" . \"88                        #")
+        call append(line(".")+14, "\#                        (| -_- |)                        #")
+        call append(line(".")+15, "\#                        0\\  =  /0                        #")
+        call append(line(".")+16, "\#                      ___/'==='\\___                      #")
+        call append(line(".")+17, "\#                    .' \\\\|     |// '.                    #")
+        call append(line(".")+18, "\#                   / \\\\|||  :  |||// \\                   #")
+        call append(line(".")+19, "\#                  / _||||| -:- |||||_ \\                  #")
+        call append(line(".")+20, "\#                 |   | \\\\\\  -  /// |   |                 #")
+        call append(line(".")+21, "\#                 | \\_|  ''\\---/''  |_/ |                 #")
+        call append(line(".")+22, "\#                 \\  .-\\__  '-'  __/-.  /                 #")
+        call append(line(".")+23, "\#               ___'. .'  /--.--\\  '. .'___               #")
+        call append(line(".")+24, "\#            .\"\" '<  '.___\\_<|>_/___.'  >' \"\".            #")
+        call append(line(".")+25, "\#           | | :  `- \\`.:`\\ _ /`:.`/ -`  : | |           #")
+        call append(line(".")+26, "\#           \\  \\ `-.   \\_ __\\ /__ _/   .-` /  /           #")
+        call append(line(".")+27, "\#       =====`-.____`.___ \\_____/ ___.`____.-`=====       #")
+        call append(line(".")+28, "\#                         `=---=`                         #")
+        call append(line(".")+29, "\#                                                         #")
+        call append(line(".")+30, "\#                佛祖保佑        永无BUG                  #")
+        call append(line(".")+31, "\#                                                         #")
+        call append(line(".")+32, "\###########################################################")
+        call append(line(".")+33, "")
+        call append(line(".")+34, "")
+        call append(line(".")+35, "")
+    endif
+    if &filetype != 'python'
+        call append(line(".")+0, "")
+        call append(line(".")+1, "/*")
+        call append(line(".")+2, "\#############################################")
+        call append(line(".")+3, "\# File Name: ".expand("%"))
+        call append(line(".")+4, "\# Author: gamegrd")
+        call append(line(".")+5, "\# Mail: gamegrd@gmail.com")
+        call append(line(".")+6, "\# Created Time: ".strftime(" %Y-%m-%d %H:%M:%S"))
+        call append(line(".")+7, "\#############################################")
+        call append(line(".")+8, "")
+        call append(line(".")+9, "")
+        call append(line(".")+10, "                                                         ")
+        call append(line(".")+11, "                         _oo8oo_                         ")
+        call append(line(".")+12, "                        o8888888o                        ")
+        call append(line(".")+13, "                        88\" . \"88                        ")
+        call append(line(".")+14, "                        (| -_- |)                        ")
+        call append(line(".")+15, "                        0\\  =  /0                        ")
+        call append(line(".")+16, "                      ___/'==='\\___                      ")
+        call append(line(".")+17, "                    .' \\\\|     |// '.                    ")
+        call append(line(".")+18, "                   / \\\\|||  :  |||// \\                   ")
+        call append(line(".")+19, "                  / _||||| -:- |||||_ \\                  ")
+        call append(line(".")+20, "                 |   | \\\\\\  -  /// |   |                 ")
+        call append(line(".")+21, "                 | \\_|  ''\\---/''  |_/ |                 ")
+        call append(line(".")+22, "                 \\  .-\\__  '-'  __/-.  /                 ")
+        call append(line(".")+23, "               ___'. .'  /--.--\\  '. .'___               ")
+        call append(line(".")+24, "            .\"\" '<  '.___\\_<|>_/___.'  >' \"\".            ")
+        call append(line(".")+25, "           | | :  `- \\`.:`\\ _ /`:.`/ -`  : | |           ")
+        call append(line(".")+26, "           \\  \\ `-.   \\_ __\\ /__ _/   .-` /  /           ")
+        call append(line(".")+27, "       =====`-.____`.___ \\_____/ ___.`____.-`=====       ")
+        call append(line(".")+28, "                         `=---=`                         ")
+        call append(line(".")+29, "                                                         ")
+        call append(line(".")+30, "                佛祖保佑        永无BUG                  ")
+        call append(line(".")+31, "                                                         ")
+        call append(line(".")+32, "")
+        call append(line(".")+33, "")
+        call append(line(".")+34, "")
+        call append(line(".")+35, "*/")
+    endif
 endfunc
 
 
-map <Leader>sc :call Setfc() <CR><ESC>5j
+
+map <Leader>sc :call SetTitle() <CR><ESC>5j
 
 "让VIM默认使用系统剪切板
-"set clipboard^=unnamed
+"set clipboard=x
 
 highlight LineNr ctermfg=darkyellow
 
