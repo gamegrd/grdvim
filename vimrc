@@ -27,6 +27,9 @@
 let mapleader = ','
 let g:mapleader = ','
 
+let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
+
 " 开启语法高亮
 syntax on
 
@@ -691,7 +694,7 @@ function SetTitle()
         call append(line(".")+5, "\# Mail: gamegrd@gmail.com")
         call append(line(".")+6, "\# Created Time: ".strftime(" %Y-%m-%d %H:%M:%S"))
         call append(line(".")+7, "\# ")
-        call append(line(".")+8, "")
+        call append(line(".")+8, "\#")
         call append(line(".")+9, "\###########################################################")
         call append(line(".")+10, "\#                                                         #")
         call append(line(".")+11, "\#                         _oo8oo_                         #")
