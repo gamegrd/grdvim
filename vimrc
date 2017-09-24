@@ -30,6 +30,7 @@ let g:mapleader = ','
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
 
+
 " 开启语法高亮
 syntax on
 

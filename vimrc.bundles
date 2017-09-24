@@ -706,11 +706,11 @@ endif
     nnoremap <leader>ge :Gdiff<CR>
     " not ready to open
     " <leader>gb maps to :Gblame<CR>
-    " <leader>gs maps to :Gstatus<CR>
+    " nnoremap  <leader>gs :Gstatus<CR>
     " <leader>gd maps to :Gdiff<CR>  和现有冲突
-    " <leader>gl maps to :Glog<CR>
-    " <leader>gc maps to :Gcommit<CR>
-    " <leader>gp maps to :Git push<CR>
+    " nnoremap <leader>gl :Glog<CR>
+    " nnoremap <leader>gc :Gcommit<CR>
+    " nnoremap <leader>gp :Git push<CR>
 " }}}
 
 " gitgutter {{{
@@ -808,7 +808,6 @@ endif
 "    let g:nerdtree_tabs_open_on_console_startup=0
 "    let g:nerdtree_tabs_open_on_gui_startup=0
 "" }}}
-
 
 " Vim Workspace Controller
 " ctrlspace {{{
