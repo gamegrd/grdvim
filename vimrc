@@ -774,3 +774,9 @@ map <Leader>sc :call SetTitle() <CR><ESC>5j
 highlight LineNr ctermfg=darkyellow
 
 
+" vimdiff
+map <leader><leader>1 :diffget 1<CR>:diffupdate<CR>
+map <leader><leader>2 :diffget 2<CR>:diffupdate<CR>
+map <leader><leader>3 :diffget 3<CR>:diffupdate<CR>
+map <leader><leader>4 :diffget 4<CR>:diffupdate<CR>
+
