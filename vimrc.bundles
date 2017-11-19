@@ -497,6 +497,8 @@ if count(g:bundle_groups, 'YouCompleteMe')
     let g:ycm_confirm_extra_conf=0
     " 开启语法关键字补全
     let g:ycm_seed_identifiers_with_syntax=1
+    " 回车作为选中
+    let g:ycm_key_list_stop_completion = ['<CR>']
 
     "let g:ycm_seed_identifiers_with_syntax=1   "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
 

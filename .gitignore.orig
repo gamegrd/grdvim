@@ -1,0 +1,11 @@
+bundle
+*.pyc
+*.bak
+*.bk
+<<<<<<< HEAD
+*.swp
+=======
+>>>>>>> 88e08317481c310541efe7989733950850e4138c
+configs
+myconfig.sh
+init.vim
