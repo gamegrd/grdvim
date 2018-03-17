@@ -40,9 +40,7 @@ brew install the_silver_searcher
 ##### 2.2 使用Python
 
 ```
-pip install pyflakes
-pip install pylint
-pip install pep8
+sudo pip install flake8 yapf
 ```
 
 ##### 2.3 如果使用Javascript(不需要的跳过)
