@@ -5,7 +5,6 @@
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
 
-
 " 开启语法高亮
 syntax on
 
@@ -44,12 +43,12 @@ set autoread
 set shortmess=atI
 
 " 备份,到另一个位置. 防止误删, 目前是取消备份
-set backup
-set backupext=.bak
-set backupdir=/tmp/
+"set backup
+"set backupext=.bak
+"set backupdir=/tmp/vimbk/
 
 " 取消备份。 视情况自己改
-" set nobackup
+set nobackup
 " 关闭交换文件
 set noswapfile
 
@@ -635,7 +634,7 @@ endif
 set background=dark
 set t_Co=256
 
-" colorscheme solarized
+"colorscheme solarized
 colorscheme molokai
 
 
@@ -748,4 +747,5 @@ map <leader><leader>1 :diffget 1<CR>:diffupdate<CR>
 map <leader><leader>2 :diffget 2<CR>:diffupdate<CR>
 map <leader><leader>3 :diffget 3<CR>:diffupdate<CR>
 map <leader><leader>4 :diffget 4<CR>:diffupdate<CR>
+autocmd FileType python nnoremap <leader><leader>f :0,$!yapf<Cr>
 
