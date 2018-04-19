@@ -17,7 +17,7 @@ filetype off " required! turn off
 " inspired by spf13, 自定义需要的插件集合
 if !exists('g:bundle_groups')
     " let g:bundle_groups=['python', 'javascript', 'golang', 'php', 'ruby', 'shell', 'markdown', 'html', 'css', 'less', 'coffeescript', 'tmux', 'json', 'beta']
-    let g:bundle_groups=['python', 'golang', 'markdown', 'tmux', 'beta']
+    let g:bundle_groups=['python', 'golang', 'markdown','vue', 'tmux', 'beta']
 endif
 
 " ----------------------------------------------------------------------------
@@ -161,11 +161,22 @@ Plug 'kana/vim-textobj-entire'
 " 增加缩进文本对象: i   dai yai cii - 相同缩进属于同一块
 Plug 'kana/vim-textobj-indent'
 
+Plug 'Chiel92/vim-autoformat'
+
+noremap <leader><leader>f :Autoformat<CR>
+
 if count(g:bundle_groups, 'tmux')
     " tmux
     " For tmux navigator Ctrl-hjkl
     Plug 'christoomey/vim-tmux-navigator'
 endif
+
+
+if count(g:bundle_groups, 'vue')
+    Plug 'posva/vim-vue'
+endif
+
+
 
 if count(g:bundle_groups, 'markdown')
     Plug 'plasticboy/vim-markdown', {'for': 'md'}
@@ -589,8 +600,9 @@ endif
     let g:ctrlp_map = '<leader>p'
     let g:ctrlp_cmd = 'CtrlP'
     map <leader>f :CtrlPMRU<CR>
+    set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip    
     let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+        \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$|node_modules$',
         \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
         \ }
     let g:ctrlp_working_path_mode=0
