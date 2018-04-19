@@ -602,7 +602,7 @@ endif
     map <leader>f :CtrlPMRU<CR>
     set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip    
     let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$|node_modules$',
+        \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$|node_modules$|build$',
         \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
         \ }
     let g:ctrlp_working_path_mode=0
