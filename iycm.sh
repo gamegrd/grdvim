@@ -31,8 +31,8 @@ done
 
 if [ `which clang` ]   # check system clang
 then
-    python install.py --clang-completer --gocode-completer --system-libclang   # use system clang
+    python install.py --clang-completer --go-completer  --system-libclang   # use system clang
 else
-    python install.py --clang-completer --gocode-completer
+    python install.py --clang-completer --go-completer 
 fi
 echo "Install Done!"

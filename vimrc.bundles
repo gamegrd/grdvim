@@ -17,7 +17,7 @@ filetype off " required! turn off
 " inspired by spf13, 自定义需要的插件集合
 if !exists('g:bundle_groups')
     " let g:bundle_groups=['python', 'javascript', 'golang', 'php', 'ruby', 'shell', 'markdown', 'html', 'css', 'less', 'coffeescript', 'tmux', 'json', 'beta']
-    let g:bundle_groups=['python', 'golang', 'markdown', 'tmux', 'dart']
+    let g:bundle_groups=['python', 'golang', 'markdown', 'tmux', 'dart','json']
 endif
 
 " ----------------------------------------------------------------------------
@@ -197,7 +197,7 @@ if count(g:bundle_groups, 'golang')
     " 1. vim a.go
     " 2. :GoInstallBinaries
     " vimgo  https://github.com/fatih/vim-go
-    Plug 'fatih/vim-go', {'for': 'go'}
+    Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 endif
 
 
