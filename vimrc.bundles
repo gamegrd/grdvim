@@ -50,12 +50,10 @@ elseif count(g:bundle_groups, 'neocomplete')
 endif
 
 Plug 'Chiel92/vim-autoformat' 
-
 Plug 'scrooloose/syntastic'
 
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'honza/vim-snippets'
+let g:sneak#label = 1
+Plug 'justinmk/vim-sneak'
 
 " Group dependencies, vim-snippets depends on ultisnips
 " 代码片段快速插入 (snippets中,是代码片段资源,需要学习)
@@ -87,7 +85,7 @@ Plug 'junegunn/vim-easy-align'
 " quick movement
 " easymotion
 "更高效的移动 [,, + w/fx/h/j/k/l]
-Plug 'Lokaltog/vim-easymotion'
+" Plug 'Lokaltog/vim-easymotion'
 
 " 更高效的行内移动, f/F/t/T, 才触发
 " quickscope
@@ -894,8 +892,11 @@ endif
     let g:go_highlight_build_constraints = 1
 
     let g:go_fmt_fail_silently = 1
-    " let g:go_fmt_command = "goimports"
+    " format with goimports instead of gofmt
+    let g:go_fmt_command = "goimports"
+    let g:syntastic_go_checkers = [ 'govet', 'errcheck']
     " let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+    let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go', 'java'] }
 " }}}
 
 " markdown {{{
