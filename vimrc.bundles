@@ -2,8 +2,6 @@
 " bundle 插件管理和配置项
 " ==========================================
 
-
-
 "------------------------------------------- begin of configs --------------------------------------------
 
 " ################### 包依赖 #####################
@@ -14,9 +12,6 @@
 set nocompatible
 filetype off " required! turn off
 
- if filereadable(expand("~/.vimrc.bundles.local"))
-        source ~/.vimrc.local
- endif
 " ################### 插件管理 ###################
 
 " inspired by spf13, 自定义需要的插件集合
@@ -62,10 +57,17 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 
+" auto complete
+" 代码自动补全
+" 迄今为止用到的最好的自动VIM自动补全插件
+" 重启 :YcmRestartServer
 
+Plug 'Valloric/YouCompleteMe'
 " 自动补全单引号，双引号等
 Plug 'Raimondi/delimitMate'
-
+" 自动补全html/xml标签
+" Plug 'docunext/closetag.vim', { 'for': ['html', 'xml'] }
+Plug 'docunext/closetag.vim', { 'for': ['html', 'xml'] }
 
 " quick edit
 " 快速注释
@@ -77,7 +79,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-repeat' | Plug 'tpope/vim-surround'
 " trailingwhitespace
 " 快速去行尾空格 [, + <Space>]
-Plug 'bronson/vim-trailing-whitespace'
+" Plug 'bronson/vim-trailing-whitespace'
 " easyalign
 " 快速赋值语句对齐
 Plug 'junegunn/vim-easy-align'
@@ -98,6 +100,7 @@ Plug 'vim-scripts/matchit.zip'
 " '[a-zA-Z] go to mark
 " m<Space>  del all marks
 " m/        list all marks
+" m.        add new mark just follow previous mark
 Plug 'kshenoy/vim-signature'
 
 " quick selection and edit
@@ -117,9 +120,9 @@ Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
 " 类似sublimetext的搜索
 " In CtrlSF window:
 " 回车/o, 打开
-" <leader>-t       在tab中打开(建议)
-" <leader>-T - Lkie t but focus CtrlSF window instead of opened new tab.
-" <leader>-q - Quit CtrlSF window.
+" t       在tab中打开(建议)
+" T - Lkie t but focus CtrlSF window instead of opened new tab.
+" q - Quit CtrlSF window.
 Plug 'dyng/ctrlsf.vim'
 " incsearch
 " Plug 'haya14busa/incsearch.vim'
@@ -161,7 +164,7 @@ Plug 'tomasr/molokai'
 " nerdtree nerdtreetabs
 Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
 " ctrlspace
-" Plug 'vim-ctrlspace/vim-ctrlspace'
+Plug 'vim-ctrlspace/vim-ctrlspace'
 " tagbar
 Plug 'majutsushi/tagbar'
 
@@ -175,11 +178,26 @@ Plug 'kana/vim-textobj-entire'
 " 增加缩进文本对象: i   dai yai cii - 相同缩进属于同一块
 Plug 'kana/vim-textobj-indent'
 
+Plug 'Chiel92/vim-autoformat'
+
+noremap <leader><leader>f :Autoformat<CR>
+
 if count(g:bundle_groups, 'tmux')
     " tmux
     " For tmux navigator Ctrl-hjkl
     Plug 'christoomey/vim-tmux-navigator'
 endif
+
+
+if count(g:bundle_groups, 'vue')
+    Plug 'posva/vim-vue'
+endif
+
+if count(g:bundle_groups, 'react')
+    Plug 'mxw/vim-jsx'
+    let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+endif
+
 
 if count(g:bundle_groups, 'markdown')
     Plug 'plasticboy/vim-markdown', {'for': 'md'}
@@ -194,20 +212,32 @@ endif
 if count(g:bundle_groups, 'golang')
     " 1. vim a.go
     " 2. :GoInstallBinaries
-    " vimgo
+    " vimgo  https://github.com/fatih/vim-go
     Plug 'fatih/vim-go', {'for': 'go'}
 endif
 
 
+if count(g:bundle_groups, 'dart')
+    Plug 'dart-lang/dart-vim-plugin'
+endif
+
+
+
 if count(g:bundle_groups, 'python')
-    " for python.vim syntax highlight
-    " pythonsyntax
     Plug 'hdima/python-syntax'
     Plug 'hynek/vim-python-pep8-indent'
-    Plug 'Glench/Vim-Jinja2-Syntax'
+    "Plug 'Glench/Vim-Jinja2-Syntax'
+
+    " isort  https://github.com/timothycrosley/isort#readme + https://github.com/fisadev/vim-isort#installation
+    " pip install isort
+    "Plug 'fisadev/vim-isort'
+    " Shift-V 上下选中, ctrl + i 规范化
+    "let g:vim_isort_map = '<C-i>'
 endif
 
 if count(g:bundle_groups, 'php')
+    " piv
+    " shift-v可以查看函数手册 / leader-pd生成注释
     Plug 'spf13/PIV'
 endif
 
@@ -217,7 +247,7 @@ if count(g:bundle_groups, 'ruby')
     " dir / dar
     Plug 'nelstrom/vim-textobj-rubyblock'
 
-    " 有bug, 和当前有冲突, 尚未解决, 不要打开
+    " 有bug, 和当前有冲突, 尚未解决, 不要打开 => TODO: solve this problem
     " Plug 'tpope/vim-endwise'
 endif
 
@@ -232,15 +262,19 @@ if count(g:bundle_groups, 'javascript')
     let g:used_javascript_libs = 'jquery,underscore,backbone'
 
     " for javascript 自动补全, 配合YCM, 需要安装全局环境的（非nvm中) node.js&npm
-    " 安装完成后还需要在 bundle/tern_for_vim 下执行 npm install 安装依赖
+    " 安装完成后还需要在 bundle/tern_for_vim 下执行 npm install 安装依赖 `cd ~/.vim/bundle/tern_for_vim && npm install`
     " see https://github.com/marijnh/tern_for_vim
-    " Plug 'marijnh/tern_for_vim'
+    " Plug 'marijnh/tern_for_vim', {'do': 'npm install'}
 endif
 
 
 if count(g:bundle_groups, 'coffeescript')
     Plug 'kchmck/vim-coffee-script'
 endif
+
+" if count(g:bundle_groups, 'shell')
+    " Plug 'Shougo/vimshell.vim'
+" endif
 
 if count(g:bundle_groups, 'json')
     " json
@@ -254,25 +288,19 @@ if count(g:bundle_groups, 'css')
 
     " 这个有坑, see issue https://github.com/wklken/k-vim/issues/49
     " Plug 'gorodinskiy/vim-coloresque'
+    " Plug 'lilydjwg/colorizer'
 endif
 
 if count(g:bundle_groups, 'less')
     " ###### vim.less : less 自动更新##########
-    " Plug 'groenewege/vim-less'
+    Plug 'groenewege/vim-less'
     " autocmd BufWritePost *.less :!lessc % > %:p:r.css
 endif
 
 if count(g:bundle_groups, 'html')
-    " 自动补全html/xml标签
-    Plug 'docunext/closetag.vim'
     " ###### emmet HTML complete #########
-    " Plug "mattn/emmet-vim"
+    " Plug 'mattn/emmet-vim'
 endif
-
-if count(g:bundle_groups, 'nginx')
-    " Plug 'evanmiller/nginx-vim-syntax'
-endif
-
 
 " this is just for beta version
 if count(g:bundle_groups, 'beta')
@@ -281,9 +309,17 @@ if count(g:bundle_groups, 'beta')
     " <leader>ig to trigger
     let g:indent_guides_start_level = 2
     let g:indent_guides_guide_size = 1
-    let g:indent_guides_auto_colors = 0
-    autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
-    autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=black
+    let g:indent_guides_auto_colors = 1
+    " autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
+    " autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=black
+
+    " Plug 'robbles/logstash.vim'
+    " Plug 'ryanoasis/vim-devicons'
+    " Plug 'ekalinin/dockerfile.vim'
+
+    " Plug 'ConradIrwin/vim-bracketed-paste'
+    " Plug 'roxma/vim-paste-easy'
+
 
 endif
 
@@ -298,6 +334,7 @@ call plug#end()
 noremap <leader><leader>f :Autoformat<CR>
 
 " syntastic {{{
+if has_key(g:plugs, 'syntastic')
     " dependence
     " 1. shellcheck `brew install shellcheck` https://github.com/koalaman/shellcheck
 
@@ -308,21 +345,17 @@ noremap <leader><leader>f :Autoformat<CR>
     let g:syntastic_enable_highlighting=1
 
     " checkers
-    " 最轻量
-    " let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes
-    " 中等
-    " error code: http://pep8.readthedocs.org/en/latest/intro.html#error-codes
-    let g:syntastic_python_checkers=['pyflakes', 'pep8'] " 使用pyflakes,速度比pylint快
-    let g:syntastic_python_pep8_args='--ignore=E501,E225,E124,E712'
-    " 重量级, 但是足够强大, 定制完成后相当个性化
-    " pylint codes: http://pylint-messages.wikidot.com/all-codes
-    " let g:syntastic_python_checkers=['pyflakes', 'pylint'] " 使用pyflakes,速度比pylint快
-    " let g:syntastic_python_checkers=['pylint'] " 使用pyflakes,速度比pylint快
-    " let g:syntastic_python_pylint_args='--disable=C0111,R0903,C0301'
+    " python
+    " pip install flake8
+    let g:syntastic_python_checkers=['flake8', ] " 使用pyflakes,速度比pylint快
+    let g:syntastic_python_flake8_options='--ignore=E501,E225,E124,E712,E116,E131'
 
-    " if js
+    " javascript
     " let g:syntastic_javascript_checkers = ['jsl', 'jshint']
     " let g:syntastic_html_checkers=['tidy', 'jshint']
+    " npm install -g eslint eslint-plugin-standard eslint-plugin-promise eslint-config-standard
+    " npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-html babel-eslint
+    let g:syntastic_javascript_checkers = ['eslint']
 
     " to see error location list
     let g:syntastic_always_populate_loc_list = 1
@@ -369,132 +402,84 @@ noremap <leader><leader>f :Autoformat<CR>
     " 禁止插件检查java
     " thanks to @marsqing, see https://github.com/wklken/k-vim/issues/164
     let g:syntastic_mode_map = {'mode': 'active', 'passive_filetypes': ['java'] }
+
+    " 关闭syntastic语法检查, 鼠标复制代码时用到, 防止把错误标志给复制了
+    nnoremap <silent> <Leader>ec :SyntasticToggleMode<CR>
+endif
 " }}}
 
 
-" ################### 自动补全 ###################
-"
-"
+" ale {{{
+if has_key(g:plugs, 'ale')
+    " pip install flake8
+    " npm install -g eslint eslint-plugin-standard eslint-plugin-promise eslint-config-standard
+    " npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-html babel-eslint
+    let g:ale_linters = {
+    \   'python': ['flake8'],
+    \   'javascript': ['eslint'],
+    \}
 
+    " E501 -> 120 chars
+    let g:ale_python_flake8_args="--ignore=E114,E116,E131 --max-line-length=120"
+    " --ignore=E225,E124,E712,E116
 
+    let g:ale_sign_error = '>>'
+    let g:ale_sign_warning = '>'
 
-if count(g:bundle_groups, 'neocomplete')
-    "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-    " Disable AutoComplPop.
-    let g:acp_enableAtStartup = 0
-    " Use neocomplete.
-    let g:neocomplete#enable_at_startup = 1
-    " Use smartcase.
-    let g:neocomplete#enable_smart_case = 1
-    " Set minimum syntax keyword length.
-    let g:neocomplete#sources#syntax#min_keyword_length = 3
-    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+    let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+    let g:ale_echo_msg_error_str = 'E'
+    let g:ale_echo_msg_warning_str = 'W'
+    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
-    " Define dictionary.
-    let g:neocomplete#sources#dictionary#dictionaries = {
-        \ 'default' : '',
-        \ 'vimshell' : $HOME.'/.vimshell_hist',
-        \ 'scheme' : $HOME.'/.gosh_completions'
-            \ }
+    nmap <silent> <Leader>ep <Plug>(ale_previous_wrap)
+    nmap <silent> <Leader>en <Plug>(ale_next_wrap)
 
-    " Define keyword.
-    if !exists('g:neocomplete#keyword_patterns')
-        let g:neocomplete#keyword_patterns = {}
-    endif
-    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+    nnoremap <silent> <Leader>ec :ALEToggle<CR>
 
-    " Plugin key-mappings.
-    inoremap <expr><C-g>     neocomplete#undo_completion()
-    inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-    " Recommended key-mappings.
-    " <CR>: close popup and save indent.
-    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    function! s:my_cr_function()
-    return neocomplete#close_popup() . "\<CR>"
-    " For no inserting <CR> key.
-    "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+    " troggle quickfix list
+    function! ToggleErrors()
+        let old_last_winnr = winnr('$')
+        lclose
+        if old_last_winnr == winnr('$')
+            " Nothing was closed, open syntastic_error location panel
+            lopen
+        endif
     endfunction
-    " <TAB>: completion.
-    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-    " <C-h>, <BS>: close popup and delete backword char.
-    inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-    inoremap <expr><C-y>  neocomplete#close_popup()
-    inoremap <expr><C-e>  neocomplete#cancel_popup()
-    " Close popup by <Space>.
-    "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+    nnoremap <Leader>s :call ToggleErrors()<cr>
 
-    " For cursor moving in insert mode(Not recommended)
-    "inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
-    "inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
-    "inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
-    "inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
-    " Or set this.
-    "let g:neocomplete#enable_cursor_hold_i = 1
-    " Or set this.
-    "let g:neocomplete#enable_insert_char_pre = 1
-
-    " AutoComplPop like behavior.
-    "let g:neocomplete#enable_auto_select = 1
-
-    " Shell like behavior(not recommended).
-    "set completeopt+=longest
-    "let g:neocomplete#enable_auto_select = 1
-    "let g:neocomplete#disable_auto_complete = 1
-    "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-    " Enable omni completion.
-    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-    " Enable heavy omni completion.
-    if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
-    endif
-    "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-    "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-    "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-    " For perlomni.vim setting.
-    " https://github.com/c9s/perlomni.vim
-    let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-
+    let g:ale_set_highlights = 1
+    highlight clear ALEErrorSign
+    highlight clear ALEWarningSign
 endif
 
+" }}}
 
-"############################YOUCOMPLETEME "
-"
-"
+" ################### 自动补全 ###################
 
-
-if count(g:bundle_groups, 'YouCompleteMe')
 " YouCompleteMe {{{
     "youcompleteme  默认tab  s-tab 和自动补全冲突
-    "let g:ycm_key_list_select_completion=['<c-n>']
-    "let g:ycm_key_list_select_completion = ['<Down>']
+    " let g:ycm_key_list_select_completion=['<c-n>']
     let g:ycm_key_list_select_completion = ['<tab>']
-    "let g:ycm_key_list_previous_completion=['<c-p>']
+    " let g:ycm_key_list_previous_completion=['<c-p>']
     let g:ycm_key_list_previous_completion = ['<Up>']
     let g:ycm_complete_in_comments = 1  "在注释输入中也能补全
     let g:ycm_complete_in_strings = 1   "在字符串输入中也能补全
     let g:ycm_use_ultisnips_completer = 1 "提示UltiSnips
     let g:ycm_collect_identifiers_from_comments_and_strings = 1   "注释和字符串中的文字也会被收入补全
     let g:ycm_collect_identifiers_from_tags_files = 1
-    let g:ycm_confirm_extra_conf=0
     " 开启语法关键字补全
     let g:ycm_seed_identifiers_with_syntax=1
+    " 回车作为选中
+    let g:ycm_key_list_stop_completion = ['<CR>']
 
     "let g:ycm_seed_identifiers_with_syntax=1   "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
 
     " 跳转到定义处, 分屏打开
     let g:ycm_goto_buffer_command = 'horizontal-split'
+    let g:ycm_register_as_syntastic_checker = 0
     " nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
     nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-    nnoremap <leader>ji :YcmCompleter GoToDeclaration<CR>
+    nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
 
     " 引入，可以补全系统，以及python的第三方包 针对新老版本YCM做了兼容
     " old version
@@ -513,8 +498,8 @@ if count(g:bundle_groups, 'YouCompleteMe')
         \ 'tagbar' : 1,
         \ 'gitcommit' : 1,
         \}
-endif
 " }}}
+
 
 
 " ultisnips {{{
@@ -580,6 +565,9 @@ endif
     let g:easy_align_delimiters = {}
     endif
     let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
+    " Default:
+    " If a delimiter is in a highlight group whose name matches any of the followings, it will be ignored.
+    let g:easy_align_ignore_groups = ['Comment', 'String']
 " }}}
 
 " ################### 快速移动 ###################
@@ -592,7 +580,7 @@ endif
     map <Leader><Leader>k <Plug>(easymotion-k)
     map <Leader><leader>l <Plug>(easymotion-lineforward)
     " 重复上一次操作, 类似repeat插件, 很强大
-    " map <Leader><leader>. <Plug>(easymotion-repeat)
+    map <Leader><leader>. <Plug>(easymotion-repeat)
 " }}}
 
 
@@ -613,13 +601,16 @@ endif
     vmap v <Plug>(expand_region_expand)
     vmap V <Plug>(expand_region_shrink)
     " Extend the global default
-    call expand_region#custom_text_objects({
-      \ 'a]' :1,
-      \ 'ab' :1,
-      \ 'aB' :1,
-      \ 'ii' :0,
-      \ 'ai' :0,
-      \ })
+    if exists("*expand_region#custom_text_objects")
+        call expand_region#custom_text_objects({
+        \ 'a]' :1,
+        \ 'ab' :1,
+        \ 'aB' :1,
+        \ 'ii' :0,
+        \ 'ai' :0,
+        \ })
+    endif
+
 " }}}
 
 " multiplecursors {{{
@@ -637,8 +628,9 @@ endif
     let g:ctrlp_map = '<leader>p'
     let g:ctrlp_cmd = 'CtrlP'
     map <leader>f :CtrlPMRU<CR>
+    set wildignore+=*/tmp/*,*/node_modules/*,*.so,*.swp,*.zip    
     let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+        \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$|node_modules$|build$',
         \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
         \ }
     let g:ctrlp_working_path_mode=0
@@ -779,7 +771,7 @@ endif
 " ################### 快速导航 ###################
 
 " nerdtree nerdtreetabs {{{
-    map <leader>e :NERDTreeToggle<CR>
+    " map <leader>n :NERDTreeToggle<CR>
     let NERDTreeHighlightCursorline=1
     let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
     "close vim if the only window left open is a NERDTree
@@ -789,16 +781,16 @@ endif
     let g:NERDTreeMapOpenVSplit = 'v'
 
 
-"    " nerdtreetabs
-"    map <Leader>e <plug>NERDTreeTabsToggle<CR>
-"    " 关闭同步
-"    let g:nerdtree_tabs_synchronize_view=1
-"    let g:nerdtree_tabs_synchronize_focus=1
-"    " 是否自动开启nerdtree
-"    " thank to @ListenerRi, see https://github.com/wklken/k-vim/issues/165
-"    let g:nerdtree_tabs_open_on_console_startup=0
-"    let g:nerdtree_tabs_open_on_gui_startup=0
-"" }}}
+    " nerdtreetabs
+    map <Leader>n <plug>NERDTreeTabsToggle<CR>
+    " 关闭同步
+    " let g:nerdtree_tabs_synchronize_view=0
+    " let g:nerdtree_tabs_synchronize_focus=0
+    " 是否自动开启nerdtree
+    " thank to @ListenerRi, see https://github.com/wklken/k-vim/issues/165
+    let g:nerdtree_tabs_open_on_console_startup=0
+    let g:nerdtree_tabs_open_on_gui_startup=0
+" }}}
 
 
 " Vim Workspace Controller
@@ -814,7 +806,6 @@ endif
 " 标签导航
 " tagbar {{{
     nmap <F9> :TagbarToggle<CR>
-    nmap <leader>c :TagbarToggle<CR>
     let g:tagbar_autofocus = 1
     " let g:tagbar_autoshowtag = 1
     " let g:tagbar_show_visibility = 1
@@ -883,6 +874,10 @@ endif
     let python_highlight_all = 1
 " }}}
 
+" piv {{{
+    let g:DisableAutoPHPFolding = 1
+" }}}
+
 
 " vimgo {{{
     let g:go_highlight_functions = 1
@@ -918,25 +913,28 @@ endif
 " css {{{
 " }}}
 
-" nginx {{{
-" }}}
-
 
 " ####### temp #######
 
 " beta {{{
+    " pip install yapf
     " python code format
     " format all file
     autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
     " format select block
-    " autocmd FileType python vnoremap <leader>y :!yapf<Cr>
+    autocmd FileType python vnoremap <leader>y :!yapf<Cr>
 
-    " Plug 'mindriot101/vim-yapf'
-    " scriptencoding utf-8
-    " let g:yapf_style = "google"
-    " let g:yapf_style = "pep8"
-    " setenv PYTHONIOENCODING UTF-8
-    " nnoremap <leader>y :call Yapf()<cr>
+    " Plug 'posva/vim-vue'
+
+    " Plug 'millermedeiros/vim-esformatter'
+    " will run esformatter after pressing <leader> followed by the 'e' and 's'
+    " keys
+    " nnoremap <silent> <leader>es :Esformatter<CR>
+    " vnoremap <silent> <leader>es :EsformatterVisual<CR>
+
 " }}}
 
 "------------------------------------------- end of configs --------------------------------------------
+"
+
+"

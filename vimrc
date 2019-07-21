@@ -1,31 +1,9 @@
-"==========================================
-" Author:  wklken
-" Version: 9.1
-" Email: wklken@yeah.net
-" BlogPost: http://www.wklken.me
-" ReadMe: README.md
-" Donation: http://www.wklken.me/pages/donation.html
-" Last_modify: 2015-12-15
-" Sections:
-"       -> Initial Plugin 加载插件
-"       -> General Settings 基础设置
-"       -> Display Settings 展示/排版等界面格式设置
-"       -> FileEncode Settings 文件编码设置
-"       -> Others 其它配置
-"       -> HotKey Settings  自定义快捷键
-"       -> FileType Settings  针对文件类型的设置
-"       -> Theme Settings  主题设置
-"
-"       -> 插件配置和具体设置在vimrc.bundles中
-"==========================================
-
-"==========================================
-" Initial Plugin 加载插件
-"==========================================
-
 " 修改leader键
-let mapleader = ','
-let g:mapleader = ','
+" let mapleader = ','
+" let g:mapleader = ','
+
+let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
@@ -74,7 +52,7 @@ set backupdir=/tmp/
 " 取消备份。 视情况自己改
 " set nobackup
 " 关闭交换文件
-set noswapfile
+" set noswapfile
 
 
 " TODO: remove this, use gundo
@@ -261,7 +239,7 @@ set encoding=utf-8
 " 自动判断编码时，依次尝试以下编码：
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set helplang=cn
-"set langmenu=zh_CN.UTF-8
+"set langmenu=zh_CN.UTF-8
 "set enc=2byte-gb18030
 " 下面这句只影响普通模式 (非图形界面) 下的 Vim
 set termencoding=utf-8
@@ -300,13 +278,13 @@ inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
 
 " In the quickfix window, <CR> is used to jump to the error under the
 " cursor, so undefine the mapping there.
-" autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 " quickfix window  s/v to open in split window,  ,gd/,jd => quickfix window => open it
-" autocmd BufReadPost quickfix nnoremap <buffer> v <C-w><Enter><C-w>L
-" autocmd BufReadPost quickfix nnoremap <buffer> s <C-w><Enter><C-w>K
+autocmd BufReadPost quickfix nnoremap <buffer> v <C-w><Enter><C-w>L
+autocmd BufReadPost quickfix nnoremap <buffer> s <C-w><Enter><C-w>K
 
 " command-line window
-" autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
+autocmd CmdwinEnter * nnoremap <buffer> <CR> <CR>
 
 
 " 上下左右键的行为 会显示其他信息
@@ -334,11 +312,11 @@ map <Down> <Nop>
 
 "Treat long lines as break lines (useful when moving around in them)
 "se swap之后，同物理行上线直接跳
-"nnoremap k gk
-"nnoremap gk k
-"nnoremap j gj
-"nnoremap gj j
-"
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
+
 " F1 - F6 设置
 
 " F1 废弃这个键,防止调出系统帮助
@@ -429,8 +407,8 @@ cnoremap <C-e> <End>
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 " map <space> /
 " 进入搜索Use sane regexes"
-nnoremap / /\v
-vnoremap / /\v
+" nnoremap / /\v
+" vnoremap / /\v
 
 " Keep search pattern at the center of the screen.
 nnoremap <silent> n nzz
@@ -523,6 +501,9 @@ vnoremap <leader>y "+y
 " select all
 map <Leader>sa ggVG
 
+" 选中并高亮最后一次插入的内容
+nnoremap gv `[v`]
+
 " select block
 nnoremap <leader>v V`}
 
@@ -543,18 +524,25 @@ nnoremap <C-y> 2<C-y>
 "nmap T O<ESC>j
 
 " Quickly close the current window
+nnoremap <leader>q :q<CR>
 
+" Quickly save the current file
+nnoremap <leader>w :w<CR>
 
 " 交换 ' `, 使得可以快速使用'跳到marked位置
 nnoremap ' `
 nnoremap ` '
 
 " remap U to <C-r> for easier redo
-" nnoremap U <C-r>
+nnoremap U <C-r>
 
 " Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+" nmap <silent> <leader>ev :e $MYVIMRC<CR>
+" nmap <silent> <leader>sv :so $MYVIMRC<CR>
+" edit vimrc/zshrc and load vimrc bindings
+nnoremap <leader>ev :vsp $MYVIMRC<CR>
+nnoremap <leader>ez :vsp ~/.zshrc<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
 
 "==========================================
 " FileType Settings  文件类型设置
@@ -565,6 +553,8 @@ autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 autocmd FileType ruby,javascript,html,css,xml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
 autocmd BufRead,BufNewFile *.part set filetype=html
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
+
 " disable showmatch when use > in php
 au BufWinEnter *.php set mps-=<:>
 
@@ -590,8 +580,9 @@ function! AutoSetFileHead()
 
     "如果文件类型为python
     if &filetype == 'python'
-        call setline(1, "\#!/usr/bin/env python")
-        call append(1, "\# encoding: utf-8")
+        " call setline(1, "\#!/usr/bin/env python")
+        " call append(1, "\# encoding: utf-8")
+        call setline(1, "\# -*- coding: utf-8 -*-")
     endif
 
     normal G
@@ -613,28 +604,9 @@ endif
 " TEMP 设置, 尚未确定要不要
 "==========================================
 
-" tmux
-" function! WrapForTmux(s)
-"   if !exists('$TMUX')
-"     return a:s
-"   endif
-"
-"   let tmux_start = "\<Esc>Ptmux;"
-"   let tmux_end = "\<Esc>\\"
-"
-"   return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
-" endfunction
-"
-" let &t_SI .= WrapForTmux("\<Esc>[?2004h")
-" let &t_EI .= WrapForTmux("\<Esc>[?2004l")
-
-" allows cursor change in tmux mode
-" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-" if exists('$TMUX')
-    " let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    " let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-" endif
+" beta
+" https://dougblack.io/words/a-good-vimrc.html
+set lazyredraw          " redraw only when we need to.
 
 
 "==========================================
@@ -666,7 +638,6 @@ set t_Co=256
 
 "colorscheme solarized
 colorscheme molokai
-" colorscheme desert
 
 
 " 设置标记一列的背景颜色和数字一行颜色一致
@@ -684,20 +655,99 @@ highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
-
-function! Setfc()
-     if expand("%:e") != 'py'
-          call append(line(".")  ,   "/**************************************")
-          call append(line(".")  ,   "*Author  : gamegrd")
-          call append(line(".")  ,   "*Email   : gamegrd@gmail.com")
-          call append(line(".")  ,   "*Data    ：".strftime("%m/%d/%Y"))
-          call append(line(".")  ,   "**************************************/")
-     endif
+function SetTitle()
+    if &filetype == 'python'
+        call append(line(".")+0, "")
+        call append(line(".")+1, "")
+        call append(line(".")+2, "\#############################################")
+        call append(line(".")+3, "\# File Name: ".expand("%"))
+        call append(line(".")+4, "\# Author: gamegrd")
+        call append(line(".")+5, "\# Mail: gamegrd@gmail.com")
+        call append(line(".")+6, "\# Created Time: ".strftime(" %Y-%m-%d %H:%M:%S"))
+        call append(line(".")+7, "\# ")
+        call append(line(".")+8, "\#")
+        call append(line(".")+9, "\###########################################################")
+        call append(line(".")+10, "\#                                                         #")
+        call append(line(".")+11, "\#                         _oo8oo_                         #")
+        call append(line(".")+12, "\#                        o8888888o                        #")
+        call append(line(".")+13, "\#                        88\" . \"88                        #")
+        call append(line(".")+14, "\#                        (| -_- |)                        #")
+        call append(line(".")+15, "\#                        0\\  =  /0                        #")
+        call append(line(".")+16, "\#                      ___/'==='\\___                      #")
+        call append(line(".")+17, "\#                    .' \\\\|     |// '.                    #")
+        call append(line(".")+18, "\#                   / \\\\|||  :  |||// \\                   #")
+        call append(line(".")+19, "\#                  / _||||| -:- |||||_ \\                  #")
+        call append(line(".")+20, "\#                 |   | \\\\\\  -  /// |   |                 #")
+        call append(line(".")+21, "\#                 | \\_|  ''\\---/''  |_/ |                 #")
+        call append(line(".")+22, "\#                 \\  .-\\__  '-'  __/-.  /                 #")
+        call append(line(".")+23, "\#               ___'. .'  /--.--\\  '. .'___               #")
+        call append(line(".")+24, "\#            .\"\" '<  '.___\\_<|>_/___.'  >' \"\".            #")
+        call append(line(".")+25, "\#           | | :  `- \\`.:`\\ _ /`:.`/ -`  : | |           #")
+        call append(line(".")+26, "\#           \\  \\ `-.   \\_ __\\ /__ _/   .-` /  /           #")
+        call append(line(".")+27, "\#       =====`-.____`.___ \\_____/ ___.`____.-`=====       #")
+        call append(line(".")+28, "\#                         `=---=`                         #")
+        call append(line(".")+29, "\#                                                         #")
+        call append(line(".")+30, "\#                佛祖保佑        永无BUG                  #")
+        call append(line(".")+31, "\#                                                         #")
+        call append(line(".")+32, "\###########################################################")
+        call append(line(".")+33, "")
+        call append(line(".")+34, "")
+        call append(line(".")+35, "")
+    endif
+    if &filetype != 'python'
+        call append(line(".")+0, "")
+        call append(line(".")+1, "/*")
+        call append(line(".")+2, "\#############################################")
+        call append(line(".")+3, "\# File Name: ".expand("%"))
+        call append(line(".")+4, "\# Author: gamegrd")
+        call append(line(".")+5, "\# Mail: gamegrd@gmail.com")
+        call append(line(".")+6, "\# Created Time: ".strftime(" %Y-%m-%d %H:%M:%S"))
+        call append(line(".")+7, "\#############################################")
+        call append(line(".")+8, "")
+        call append(line(".")+9, "")
+        call append(line(".")+10, "                                                         ")
+        call append(line(".")+11, "                         _oo8oo_                         ")
+        call append(line(".")+12, "                        o8888888o                        ")
+        call append(line(".")+13, "                        88\" . \"88                        ")
+        call append(line(".")+14, "                        (| -_- |)                        ")
+        call append(line(".")+15, "                        0\\  =  /0                        ")
+        call append(line(".")+16, "                      ___/'==='\\___                      ")
+        call append(line(".")+17, "                    .' \\\\|     |// '.                    ")
+        call append(line(".")+18, "                   / \\\\|||  :  |||// \\                   ")
+        call append(line(".")+19, "                  / _||||| -:- |||||_ \\                  ")
+        call append(line(".")+20, "                 |   | \\\\\\  -  /// |   |                 ")
+        call append(line(".")+21, "                 | \\_|  ''\\---/''  |_/ |                 ")
+        call append(line(".")+22, "                 \\  .-\\__  '-'  __/-.  /                 ")
+        call append(line(".")+23, "               ___'. .'  /--.--\\  '. .'___               ")
+        call append(line(".")+24, "            .\"\" '<  '.___\\_<|>_/___.'  >' \"\".            ")
+        call append(line(".")+25, "           | | :  `- \\`.:`\\ _ /`:.`/ -`  : | |           ")
+        call append(line(".")+26, "           \\  \\ `-.   \\_ __\\ /__ _/   .-` /  /           ")
+        call append(line(".")+27, "       =====`-.____`.___ \\_____/ ___.`____.-`=====       ")
+        call append(line(".")+28, "                         `=---=`                         ")
+        call append(line(".")+29, "                                                         ")
+        call append(line(".")+30, "                佛祖保佑        永无BUG                  ")
+        call append(line(".")+31, "                                                         ")
+        call append(line(".")+32, "")
+        call append(line(".")+33, "")
+        call append(line(".")+34, "")
+        call append(line(".")+35, "*/")
+    endif
 endfunc
 
 
-map <Leader>sc :call Setfc() <CR><ESC>5j
+
+map <Leader>sc :call SetTitle() <CR><ESC>5j
+
+"让VIM默认使用系统剪切板
+"set clipboard=x
 
 highlight LineNr ctermfg=darkyellow
 
+
+" vimdiff
+map <leader><leader>1 :diffget 1<CR>:diffupdate<CR>
+map <leader><leader>2 :diffget 2<CR>:diffupdate<CR>
+map <leader><leader>3 :diffget 3<CR>:diffupdate<CR>
+map <leader><leader>4 :diffget 4<CR>:diffupdate<CR>
+autocmd FileType python nnoremap <leader><leader>f :0,$!yapf<Cr>
 

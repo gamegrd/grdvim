@@ -31,9 +31,16 @@ done
 
 if [ `which clang` ]   # check system clang
 then
+<<<<<<< HEAD
     python install.py --clang-completer --system-libclang   # use system clang
 else
     python install.py --clang-completer
 fi
 
+=======
+    python install.py --clang-completer --gocode-completer --system-libclang   # use system clang
+else
+    python install.py --clang-completer --gocode-completer
+fi
+>>>>>>> 940ae75a5d8e0399fbb8b013bcb754d0bc866129
 echo "Install Done!"
