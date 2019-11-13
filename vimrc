@@ -50,7 +50,7 @@ set backupdir=/tmp/
 " 取消备份。 视情况自己改
 " set nobackup
 " 关闭交换文件
-set noswapfile
+" set noswapfile
 
 
 " TODO: remove this, use gundo
@@ -631,11 +631,11 @@ endif
 
 
 " theme主题
-set background=dark
-set t_Co=256
+" set background=dark
+" set t_Co=256
 
 "colorscheme solarized
-colorscheme molokai
+" colorscheme molokai
 
 
 " 设置标记一列的背景颜色和数字一行颜色一致
