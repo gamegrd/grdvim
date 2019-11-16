@@ -89,7 +89,7 @@ Plug 'vim-scripts/matchit.zip'
 " m<Space>  del all marks
 " m/        list all marks
 " m.        add new mark just follow previous mark
-"Plug 'kshenoy/vim-signature'
+Plug 'kshenoy/vim-signature'
 
 " quick selection and edit
 " expandregion
