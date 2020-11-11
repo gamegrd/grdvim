@@ -69,6 +69,7 @@ if $FOR_VIM; then
 fi
 
     lnif "$CURRENT_DIR/tmux.conf" "$HOME/.tmux.conf"
+    lnif "$CURRENT_DIR/flake8" "$HOME/.config/flake8"
 
 if $FOR_NEOVIM; then
     lnif "$CURRENT_DIR/" "$HOME/.config/nvim"
