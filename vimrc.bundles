@@ -333,8 +333,8 @@ if has_key(g:plugs, 'syntastic')
     " checkers
     " python
     " pip install flake8
-    let g:syntastic_python_checkers=['flake8', ] " 使用pyflakes,速度比pylint快
-    let g:syntastic_python_flake8_options='--ignore=E501,E225,E124,E712,E116,E131'
+    " let g:syntastic_python_checkers=['flake8', ] " 使用pyflakes,速度比pylint快
+    " let g:syntastic_python_flake8_options='--ignore=E501,E225,E124,E712,E116,E131'
 
     " javascript
     " let g:syntastic_javascript_checkers = ['jsl', 'jshint']
@@ -407,7 +407,7 @@ if has_key(g:plugs, 'ale')
 
     " E501 -> 120 chars
     " --ignore=E225,E124,E712,E116
-    let g:ale_python_flake8_options="--ignore=E121,E123,E126,E226,E24,E704,W503 --max-line-length=120"
+    let g:ale_python_flake8_options="--ignore=E122,E501,E123,E126,E226,E24,E704,W503,E501,E225,E124,E712,E116,F401,E303,E231,E201,E202,F841,E265 --max-line-length=120"
 
     "   W503 --max-line-length=120"
 

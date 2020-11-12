@@ -116,7 +116,6 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set matchtime=2
 
-
 " 设置文内智能搜索提示
 " 高亮search命中的文本
 set hlsearch
