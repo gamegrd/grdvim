@@ -70,7 +70,7 @@ Plug 'tpope/vim-surround'
 " Plug 'bronson/vim-trailing-whitespace'
 " easyalign
 " 快速赋值语句对齐
-Plug 'junegunn/vim-easy-align'
+" Plug 'junegunn/vim-easy-align'
 
 " quick movement
 " easymotion
@@ -89,7 +89,7 @@ Plug 'unblevable/quick-scope'
 " m<Space>  del all marks
 " m/        list all marks
 " m.        add new mark just follow previous mark
-" Plug 'kshenoy/vim-signature'
+ Plug 'kshenoy/vim-signature'
 
 " quick selection and edit
 " expandregion
@@ -755,7 +755,6 @@ endif
 " }}}
 
 " ################### 快速导航 ###################
-
 " nerdtree nerdtreetabs {{{
     " map <leader>n :NERDTreeToggle<CR>
     let NERDTreeHighlightCursorline=1
@@ -768,7 +767,10 @@ endif
 
 
     " nerdtreetabs
-    map <Leader>n <plug>NERDTreeTabsToggle<CR>
+    map <Leader>e <plug>NERDTreeTabsToggle<CR>
+    map <F7> <plug>NERDTreeTabsToggle<CR>
+    let NERDTreeShowLineNumbers=1
+    let NERDTreeAutoCenter=1
     " 关闭同步
     " let g:nerdtree_tabs_synchronize_view=0
     " let g:nerdtree_tabs_synchronize_focus=0
@@ -777,7 +779,7 @@ endif
     let g:nerdtree_tabs_open_on_console_startup=0
     let g:nerdtree_tabs_open_on_gui_startup=0
 " }}}
-
+" 
 
 " Vim Workspace Controller
 " ctrlspace {{{
@@ -791,7 +793,8 @@ endif
 
 " 标签导航
 " tagbar {{{
-    nmap <F9> :TagbarToggle<CR>
+    nmap <F8> :TagbarToggle<CR>
+    nmap <Leader>t :TagbarToggle<CR>
     let g:tagbar_autofocus = 1
     let g:tagbar_autoshowtag = 1
     let g:tagbar_show_visibility = 1
@@ -853,7 +856,7 @@ endif
 
     let g:quickrun_no_default_key_mappings = 1
     nmap <Leader>r <Plug>(quickrun)
-    map <F10> :QuickRun<CR>
+    map <F9> :QuickRun<CR>
 " }}}
 
 
