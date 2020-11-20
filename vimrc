@@ -46,7 +46,7 @@ set backupdir=/tmp/
 " 取消备份。 视情况自己改
 " set nobackup
 " 关闭交换文件
-" set noswapfile
+set noswapfile
 
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 

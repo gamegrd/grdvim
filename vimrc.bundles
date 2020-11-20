@@ -55,7 +55,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'Raimondi/delimitMate'
 " 自动补全html/xml标签
 " Plug 'docunext/closetag.vim', { 'for': ['html', 'xml'] }
-Plug 'docunext/closetag.vim', { 'for': ['html', 'xml'] }
+" Plug 'docunext/closetag.vim', { 'for': ['html', 'xml'] }
 
 " quick edit
 " 快速注释
@@ -89,7 +89,7 @@ Plug 'vim-scripts/matchit.zip'
 " m<Space>  del all marks
 " m/        list all marks
 " m.        add new mark just follow previous mark
-Plug 'kshenoy/vim-signature'
+" Plug 'kshenoy/vim-signature'
 
 " quick selection and edit
 " expandregion
@@ -158,17 +158,17 @@ Plug 'majutsushi/tagbar'
 
 " text object
 " 支持自定义文本对象
-Plug 'kana/vim-textobj-user'
+" Plug 'kana/vim-textobj-user'
 " 增加行文本对象: l   dal yal cil
-Plug 'kana/vim-textobj-line'
+" Plug 'kana/vim-textobj-line'
 " 增加文件文本对象: e   dae yae cie
-Plug 'kana/vim-textobj-entire'
+" Plug 'kana/vim-textobj-entire'
 " 增加缩进文本对象: i   dai yai cii - 相同缩进属于同一块
-Plug 'kana/vim-textobj-indent'
+" Plug 'kana/vim-textobj-indent'
 
-Plug 'Chiel92/vim-autoformat'
+" Plug 'Chiel92/vim-autoformat'
 
-noremap <leader><leader>f :Autoformat<CR>
+" noremap <leader><leader>f :Autoformat<CR>
 
 if count(g:bundle_groups, 'tmux')
     " tmux
@@ -906,9 +906,9 @@ endif
     " pip install yapf
     " python code format
     " format all file
-    autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
+    " autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr>
     " format select block
-    autocmd FileType python vnoremap <leader>y :!yapf<Cr>
+    " autocmd FileType python vnoremap <leader>y :!yapf<Cr>
 
     " Plug 'posva/vim-vue'
 
