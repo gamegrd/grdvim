@@ -64,7 +64,7 @@ Plug 'scrooloose/nerdcommenter'
 
 " 快速加入修改环绕字符
 " for repeat -> enhance surround.vim, . to repeat command
-Plug 'tpope/vim-repeat' | Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 " trailingwhitespace
 " 快速去行尾空格 [, + <Space>]
 " Plug 'bronson/vim-trailing-whitespace'
@@ -81,7 +81,7 @@ Plug 'junegunn/vim-easy-align'
 " quickscope
 Plug 'unblevable/quick-scope'
 
-Plug 'vim-scripts/matchit.zip'
+" Plug 'vim-scripts/matchit.zip'
 " signature
 " 显示marks - 方便自己进行标记和跳转
 " m[a-zA-Z] add mark
@@ -793,8 +793,9 @@ endif
 " tagbar {{{
     nmap <F9> :TagbarToggle<CR>
     let g:tagbar_autofocus = 1
-    " let g:tagbar_autoshowtag = 1
-    " let g:tagbar_show_visibility = 1
+    let g:tagbar_autoshowtag = 1
+    let g:tagbar_show_visibility = 1
+    let g:tagbar_show_linenumbers =2
     " for ruby
     let g:tagbar_type_ruby = {
         \ 'kinds' : [
