@@ -302,3 +302,29 @@ ctrl+n    相对/绝对行号切换
     q: 关闭NERDTree
     A: 全屏显示NERDTree，或者关闭全屏
 
+
+
+8. Neovim 
+    是能使用 vim 的配置文件的，如果有 vim 的配置，直接软链接就好：
+
+    $(~) ln -s ~/.vim .config/nvim
+    $(~) ln -s ~/.vimrc .config/nvim/init.vim
+    如果没有 vim 的配置文件，但想 vim 和 nvim 使用同一个配置，也按上面的方法配置就行。
+    　　有时 neovim 的某些指令在 vim 中是不能使用的, 所以可使用 has('nvim') 来判断当前使用的版本：
+
+    if has('nvim')
+        ...
+    endif
+    如果想 nvim 单独使用一个配置，那就在 .config 下创建配置文件就行：
+
+    $(~) mkdir .config/nvim
+    $(~) touch .config/nvim/init.vim
+    2.2 插件管理
+
+    能在 neovim 中使用的插件管理工具有不少，这里介绍的是 vim-plug 。
+    　　安装方法很简单，只要一条命令：
+
+    $ curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+
