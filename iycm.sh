@@ -18,7 +18,7 @@ echo "$ycm"
 
 while  [ ! -d "$ycm" ];
 do
-    git clone https://github.com/Valloric/YouCompleteMe.git
+    git clone https://github.com/Valloric/YouCompleteMe.git --depth=1
 done
 
 cd $CURRENT_DIR/bundle/YouCompleteMe/
@@ -26,7 +26,7 @@ cd $CURRENT_DIR/bundle/YouCompleteMe/
 for ((i=1;i<1024;i++))
 do
     cd $CURRENT_DIR/bundle/YouCompleteMe/
-    git submodule update --init --recursive
+    git submodule update --init --recursive --depth=1
 done
 
 if [ `which clang` ]   # check system clang
