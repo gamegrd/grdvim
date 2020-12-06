@@ -472,9 +472,16 @@ endif
 
     " 引入，可以补全系统，以及python的第三方包 针对新老版本YCM做了兼容
     " new version
-    if !empty(glob("/Users/anonymous/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py"))
-        let g:ycm_global_ycm_extra_conf = "/Users/anonymous/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py"
+    if !empty(glob("~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py"))
+        let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py"
     endif
+
+
+    if !empty(glob("~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py"))
+        let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py"
+    endif
+
+
 
     " 直接触发自动补全 insert模式下
     " let g:ycm_key_invoke_completion = '<C-Space>'
