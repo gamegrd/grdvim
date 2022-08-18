@@ -17,7 +17,7 @@ filetype off " required! turn off
 " inspired by spf13, 自定义需要的插件集合
 if !exists('g:bundle_groups')
     " let g:bundle_groups=['python', 'javascript', 'golang', 'php', 'ruby', 'shell', 'markdown', 'html', 'css', 'less', 'coffeescript', 'tmux', 'json', 'beta']
-    let g:bundle_groups=['python',  'markdown','golang', 'tmux' ]
+    let g:bundle_groups=['tmux','shell','json' ]
 endif
 
 " ----------------------------------------------------------------------------
@@ -40,17 +40,20 @@ endif
 let g:sneak#label = 1
 Plug 'justinmk/vim-sneak'
 
-" Group dependencies, vim-snippets depends on ultisnips
-" 代码片段快速插入 (snippets中,是代码片段资源,需要学习)
-" Snippets are separated from the engine. Add this if you want them:
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-" auto complete
-" 代码自动补全
-" 迄今为止用到的最好的自动VIM自动补全插件
-" 重启 :YcmRestartServer
+if count(g:bundle_groups, 'beta')
+    " Group dependencies, vim-snippets depends on ultisnips
+    " 代码片段快速插入 (snippets中,是代码片段资源,需要学习)
+    " Snippets are separated from the engine. Add this if you want them:
+    " Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    " auto complete
+    " 代码自动补全
+    " 迄今为止用到的最好的自动VIM自动补全插件
+    " 重启 :YcmRestartServer
 
-Plug 'Valloric/YouCompleteMe'
+    Plug 'Valloric/YouCompleteMe'
+endif
+
 " 自动补全单引号，双引号等
 Plug 'Raimondi/delimitMate'
 " 自动补全html/xml标签
