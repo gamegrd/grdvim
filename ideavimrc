@@ -1,0 +1,123 @@
+source ~/.vimrc
+Plug 'easymotion/vim-easymotion'
+set surround
+set multiple-cursors
+" ===
+" === multiple-cursors
+" ===
+nmap <C-m> <Plug>NextWholeOccurrence
+xmap <C-m> <Plug>NextWholeOccurrence
+nmap <C-x> <Plug>SkipOccurrence
+xmap <C-x> <Plug>SkipOccurrence
+nmap <C-q> <Plug>RemoveOccurrence
+xmap <C-q> <Plug>RemoveOccurrence
+nmap <S-C-n> <Plug>AllWholeOccurrences
+xmap <S-C-n> <Plug>AllWholeOccurrences
+" ===
+" === easymotion
+" ===
+" 后退功能
+"nnoremap <leader>gb :action Back<CR>
+"nnoremap <leader>gb :action JumpToLastChange<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""Debug""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 打上断点或取消断点
+nnoremap <leader>dt :action ToggleLineBreakpoint<CR>
+" 取消所有的断点
+nnoremap <leader>dT :action Debugger.RemoveAllBreakpointsInFile<CR>
+" debug上次运行的类
+nnoremap <leader>dd :action Debug<CR>
+" debug当前(now)类
+nnoremap <leader>dc :action DebugClass<CR>
+" debug神器
+" StepInto (F7)
+nnoremap <leader>di :action ForceStepInto<CR>
+" ForceStepInto(CMD + SHIFT + F7)
+nnoremap <leader>dI :action ForceStepInto
+" StepOver (F8)
+nnoremap <leader>do :action StepOver<CR>
+" Resume (跳到下个断点运行)
+nnoremap <leader>dr :action Resume<CR>
+" StepOut (SHIFT+F8)
+nnoremap <leader>du :action StepOut<CR>
+" debug强制运行到光标处
+nnoremap <leader>dC :action ForceRunToCursor<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""RUN""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 设置运行配置 (未知)
+" nnoremap <leader>rc :action RunConfiguration<CR>
+" 运行上次运行类
+nnoremap <leader>rr :action Run<CR>
+" 运行当前(now)类
+nnoremap <leader>rc :action RunClass<CR>
+" 停止运行
+nnoremap <leader>rp :action Stop<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""重构篇""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 抽取方法重构(不熟悉)
+" nnoremap <leader>om :action ExtractMethod<CR>
+" 抽取接口重构(不熟悉)
+" nnoremap <leader>oi :action ExtractInterface<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""窗口篇""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 激活run的运行窗口
+nnoremap <leader>wr  :action ActivateRunToolWindow<CR>
+" 隐藏窗口(windows hide)
+nnoremap <leader>wh :action HideActiveWindow<CR>
+" 激活debug的运行窗口
+nnoremap <leader>wd :action ActivateDebugToolWindow<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""文件和跳转"""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 重命名文件
+nnoremap <leader>rn :action RenameFile<CR>
+"最近改动文件间相互跳转
+nnoremap <leader>rf mm`m:action RecentChangedFiles<CR>
+" 查找文件
+nnoremap <leader>p mm`m:action GotoFile<CR>
+" 最近查看文件间相互跳转
+nnoremap <leader>fr mm`m:action RecentFiles<CR>
+" 查找用法
+nnoremap <leader>fu :action FindUsages<CR>
+"跳转到声明
+nnoremap gd mm`m:action GotoDeclaration<CR>
+" 打开General菜单
+nnoremap go :action Generate<CR>
+"跳转到实现类
+nnoremap gi mm`m:action GotoImplementation<CR>
+" 查找类
+nnoremap gc mm`m:action GotoClass<CR>
+" 跳转SuperMethod
+nnoremap gs mm`m:action GotoSuperMethod<CR>
+" 目前还不熟悉 (后面搞懂回来补充)
+nnoremap gf mm`m:action FileStructurePopup<CR>
+" 搜索 action
+nnoremap <leader>ga :action GotoAction<CR>
+"相当于鼠标右键
+nnoremap <leader>sp :action ShowPopupMenu<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""LSP"""""""""""""""""""""''""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 格式化代码
+nnoremap <leader>lf :action ReformatCode<CR>
+" 跳转下一个错误
+nnoremap <leader>lj :action GotoNextError<CR>
+" 跳转上一个错误
+nnoremap <leader>lk :action GotoPreviousError<CR>
+" 命名元素
+nnoremap <leader>lr :action RenameElement<CR>
+" 快速显示文档
+nnoremap K  :action QuickJavaDoc<CR>
+" idea智能提示
+nnoremap ga :action ShowIntentionActions<CR>
+" 显示错误描述
+nnoremap gl :action ShowErrorDescription<CR>
+" 弹出参数信息(打类的时候有奇效)
+nnoremap gp :action ParameterInfo<CR>
+" 弹出类型信息 (显示这个是什么类型)
+nnoremap <leader>st :action ExpressionTypeInfo<CR>
